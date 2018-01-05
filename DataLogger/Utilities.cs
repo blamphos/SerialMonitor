@@ -2,7 +2,7 @@
 using System.IO;
 using System.Diagnostics;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	public partial class MainForm
 	{	

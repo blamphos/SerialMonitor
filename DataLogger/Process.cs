@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Linq;
 using ZedGraph;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	public partial class MainForm : Form
 	{	
@@ -152,8 +152,8 @@ namespace DataLogger
   			Debug.WriteLine(sb2.ToString());
   			
   			// Update drop count
-  			dropCount += int.Parse(lblCount.Text);
-  			lblCount.Text = dropCount.ToString();
+  			//dropCount += int.Parse(lblCount.Text);
+  			//lblCount.Text = dropCount.ToString();
   					
 			// Plot curves in graph control
 			myPane.CurveList.Clear();

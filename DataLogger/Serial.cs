@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Text;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	public partial class MainForm
 	{		

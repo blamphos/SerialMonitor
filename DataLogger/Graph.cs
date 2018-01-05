@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using ZedGraph;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	public partial class MainForm : Form
 	{	
@@ -68,6 +68,6 @@ namespace DataLogger
         	zg1.ZoomOut(myPane);
 			zg1.AxisChange();
 			zg1.Refresh();
-		}
+		}		
 	}
 }

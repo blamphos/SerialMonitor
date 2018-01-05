@@ -9,7 +9,7 @@ using System.Linq;
 using ZedGraph;
 using System.Management;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	/// <summary>
 	/// Description of MainForm.
@@ -100,16 +100,19 @@ namespace DataLogger
 					OpenCom(cbPorts.SelectedItem.ToString());
 					btnConnect.Text = "Disconnect";	
 					Debug.Print("Connected successfully");
+					btnSend.Enabled = true;
 				}
 				else
 				{
 					CloseCom();
 					btnConnect.Text = "Connect";
 					Debug.Print("Disconnected successfully");
+					btnSend.Enabled = false;
 				}
 			}
 			catch (Exception ex) {
 				ExceptionHandler(ex);
+				btnSend.Enabled = false;
 			}			
 		}
 				
@@ -154,9 +157,21 @@ namespace DataLogger
 		
 		void BtnSendClick(object sender, EventArgs e)
 		{
-			SendCommand(tbSend.Text + "\n");
+			SendCommand(tbSend.Text + "\r\n");	
 		}
-			
+		
+		void TrackBarPotValueValueChanged(object sender, EventArgs e)
+		{
+			if (string.IsNullOrEmpty(tbSend.Text))
+			{
+				var hexValue = trackBarPotValue.Value.ToString("X2");
+				labelPotValue.Text = "0x" + hexValue;
+				var cmd = "W:" + hexValue + "\r\n";
+				//UpdateText(cmd);
+				SendCommand(cmd);
+			}
+		}
+		
 		void BtnExportGraphClick(object sender, EventArgs e)
 		{
    			zg1.SaveAsBitmap();
@@ -238,7 +253,7 @@ namespace DataLogger
 			{
 				if (chkSingle.Checked == true)
 				{
-					lblCount.Text = "0";
+					//lblCount.Text = "0";
 					SendCommand("d\n");
 				}
 				else{
@@ -319,7 +334,7 @@ namespace DataLogger
 				try
 				{
 					list.Clear();
-					lblCount.Text = "";
+					//lblCount.Text = "";
 					
 					// Read file content line by line
 					using (StreamReader sr = File.OpenText(openFileDialog1.FileName))
@@ -359,7 +374,7 @@ namespace DataLogger
 		
 		void BtnAnalyzeClick(object sender, EventArgs e)
 		{
-			lblCount.Text = "";
+			//lblCount.Text = "";
 			StringBuilder sb = new StringBuilder();
 			double delta;			
 			double[] input = list.Select(pointPair => pointPair.Y).ToArray();
@@ -445,7 +460,7 @@ namespace DataLogger
   			Debug.WriteLine(sb2.ToString());
   			
   			// Update drop count
-  			lblCount.Text = dropCount.ToString();
+  			//lblCount.Text = dropCount.ToString();
   			
 			// Add some y-offset into original measurement data
 			/*foreach (PointPair p in list)

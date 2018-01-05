@@ -9,7 +9,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace DataLogger
+namespace SerialMonitor
 {
 	/// <summary>
 	/// Class with program entry point.

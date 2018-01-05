@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-# SharpDevelop 3.2.1.6466
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLogger", "DataLogger\DataLogger.csproj", "{F90A138E-B103-4AB6-94FA-8B2C4400D60E}"
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialMonitor", "DataLogger\SerialMonitor.csproj", "{F90A138E-B103-4AB6-94FA-8B2C4400D60E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

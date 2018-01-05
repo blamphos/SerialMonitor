@@ -6,7 +6,7 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-namespace DataLogger
+namespace SerialMonitor
 {
 	partial class MainForm
 	{
@@ -59,15 +59,17 @@ namespace DataLogger
 			this.chkSingle = new System.Windows.Forms.CheckBox();
 			this.btnImportData = new System.Windows.Forms.Button();
 			this.btnAnalyze = new System.Windows.Forms.Button();
-			this.lblCount = new System.Windows.Forms.Label();
 			this.numDecimateFactor = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.numericUpDownYMax = new System.Windows.Forms.NumericUpDown();
 			this.label2 = new System.Windows.Forms.Label();
 			this.numericUpDownYMin = new System.Windows.Forms.NumericUpDown();
+			this.trackBarPotValue = new System.Windows.Forms.TrackBar();
+			this.labelPotValue = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numDecimateFactor)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYMax)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYMin)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.trackBarPotValue)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// serialPort1
@@ -107,12 +109,12 @@ namespace DataLogger
 			// tbData
 			// 
 			this.tbData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Left)));
+			| System.Windows.Forms.AnchorStyles.Left)));
 			this.tbData.Location = new System.Drawing.Point(12, 43);
 			this.tbData.Multiline = true;
 			this.tbData.Name = "tbData";
 			this.tbData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.tbData.Size = new System.Drawing.Size(332, 284);
+			this.tbData.Size = new System.Drawing.Size(332, 237);
 			this.tbData.TabIndex = 4;
 			// 
 			// btnClear
@@ -129,13 +131,13 @@ namespace DataLogger
 			// btnSend
 			// 
 			this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnSend.Enabled = false;
 			this.btnSend.Location = new System.Drawing.Point(350, 334);
 			this.btnSend.Name = "btnSend";
 			this.btnSend.Size = new System.Drawing.Size(75, 23);
 			this.btnSend.TabIndex = 5;
 			this.btnSend.Text = "Send";
 			this.btnSend.UseVisualStyleBackColor = true;
-			this.btnSend.Visible = false;
 			this.btnSend.Click += new System.EventHandler(this.BtnSendClick);
 			// 
 			// tbSend
@@ -145,24 +147,23 @@ namespace DataLogger
 			this.tbSend.Name = "tbSend";
 			this.tbSend.Size = new System.Drawing.Size(170, 20);
 			this.tbSend.TabIndex = 6;
-			this.tbSend.Visible = false;
 			// 
 			// zg1
 			// 
 			this.zg1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-									| System.Windows.Forms.AnchorStyles.Left) 
-									| System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.zg1.EditButtons = System.Windows.Forms.MouseButtons.Left;
 			this.zg1.Location = new System.Drawing.Point(440, 41);
 			this.zg1.Name = "zg1";
 			this.zg1.PanModifierKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.None)));
-			this.zg1.ScrollGrace = 0;
-			this.zg1.ScrollMaxX = 0;
-			this.zg1.ScrollMaxY = 0;
-			this.zg1.ScrollMaxY2 = 0;
-			this.zg1.ScrollMinX = 0;
-			this.zg1.ScrollMinY = 0;
-			this.zg1.ScrollMinY2 = 0;
+			this.zg1.ScrollGrace = 0D;
+			this.zg1.ScrollMaxX = 0D;
+			this.zg1.ScrollMaxY = 0D;
+			this.zg1.ScrollMaxY2 = 0D;
+			this.zg1.ScrollMinX = 0D;
+			this.zg1.ScrollMinY = 0D;
+			this.zg1.ScrollMinY2 = 0D;
 			this.zg1.Size = new System.Drawing.Size(498, 315);
 			this.zg1.TabIndex = 8;
 			// 
@@ -258,6 +259,7 @@ namespace DataLogger
 			this.btnExportData.TabIndex = 7;
 			this.btnExportData.Text = "Export Data";
 			this.btnExportData.UseVisualStyleBackColor = true;
+			this.btnExportData.Visible = false;
 			this.btnExportData.Click += new System.EventHandler(this.BtnExportDataClick);
 			// 
 			// chkSingle
@@ -280,6 +282,7 @@ namespace DataLogger
 			this.btnImportData.TabIndex = 7;
 			this.btnImportData.Text = "Import Data";
 			this.btnImportData.UseVisualStyleBackColor = true;
+			this.btnImportData.Visible = false;
 			this.btnImportData.Click += new System.EventHandler(this.BtnImportDataClick);
 			// 
 			// btnAnalyze
@@ -290,34 +293,25 @@ namespace DataLogger
 			this.btnAnalyze.TabIndex = 7;
 			this.btnAnalyze.Text = "Analyze";
 			this.btnAnalyze.UseVisualStyleBackColor = true;
+			this.btnAnalyze.Visible = false;
 			this.btnAnalyze.Click += new System.EventHandler(this.BtnAnalyzeClick);
-			// 
-			// lblCount
-			// 
-			this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblCount.Location = new System.Drawing.Point(350, 288);
-			this.lblCount.Name = "lblCount";
-			this.lblCount.Size = new System.Drawing.Size(84, 39);
-			this.lblCount.TabIndex = 13;
-			this.lblCount.Text = "0";
-			this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// numDecimateFactor
 			// 
 			this.numDecimateFactor.Location = new System.Drawing.Point(776, 12);
 			this.numDecimateFactor.Minimum = new decimal(new int[] {
-									1,
-									0,
-									0,
-									0});
+			1,
+			0,
+			0,
+			0});
 			this.numDecimateFactor.Name = "numDecimateFactor";
 			this.numDecimateFactor.Size = new System.Drawing.Size(81, 20);
 			this.numDecimateFactor.TabIndex = 14;
 			this.numDecimateFactor.Value = new decimal(new int[] {
-									10,
-									0,
-									0,
-									0});
+			10,
+			0,
+			0,
+			0});
 			this.numDecimateFactor.Visible = false;
 			// 
 			// label1
@@ -332,29 +326,29 @@ namespace DataLogger
 			// 
 			this.numericUpDownYMax.DecimalPlaces = 1;
 			this.numericUpDownYMax.Increment = new decimal(new int[] {
-									1,
-									0,
-									0,
-									65536});
+			1,
+			0,
+			0,
+			65536});
 			this.numericUpDownYMax.Location = new System.Drawing.Point(350, 204);
 			this.numericUpDownYMax.Maximum = new decimal(new int[] {
-									33,
-									0,
-									0,
-									65536});
+			33,
+			0,
+			0,
+			65536});
 			this.numericUpDownYMax.Minimum = new decimal(new int[] {
-									1,
-									0,
-									0,
-									65536});
+			1,
+			0,
+			0,
+			65536});
 			this.numericUpDownYMax.Name = "numericUpDownYMax";
 			this.numericUpDownYMax.Size = new System.Drawing.Size(74, 20);
 			this.numericUpDownYMax.TabIndex = 17;
 			this.numericUpDownYMax.Value = new decimal(new int[] {
-									1,
-									0,
-									0,
-									0});
+			1,
+			0,
+			0,
+			0});
 			// 
 			// label2
 			// 
@@ -368,31 +362,51 @@ namespace DataLogger
 			// 
 			this.numericUpDownYMin.DecimalPlaces = 1;
 			this.numericUpDownYMin.Increment = new decimal(new int[] {
-									1,
-									0,
-									0,
-									65536});
+			1,
+			0,
+			0,
+			65536});
 			this.numericUpDownYMin.Location = new System.Drawing.Point(350, 250);
 			this.numericUpDownYMin.Maximum = new decimal(new int[] {
-									32,
-									0,
-									0,
-									65536});
+			32,
+			0,
+			0,
+			65536});
 			this.numericUpDownYMin.Name = "numericUpDownYMin";
 			this.numericUpDownYMin.Size = new System.Drawing.Size(74, 20);
 			this.numericUpDownYMin.TabIndex = 19;
+			// 
+			// trackBarPotValue
+			// 
+			this.trackBarPotValue.LargeChange = 8;
+			this.trackBarPotValue.Location = new System.Drawing.Point(12, 286);
+			this.trackBarPotValue.Maximum = 255;
+			this.trackBarPotValue.Name = "trackBarPotValue";
+			this.trackBarPotValue.Size = new System.Drawing.Size(332, 45);
+			this.trackBarPotValue.SmallChange = 2;
+			this.trackBarPotValue.TabIndex = 21;
+			this.trackBarPotValue.ValueChanged += new System.EventHandler(this.TrackBarPotValueValueChanged);
+			// 
+			// labelPotValue
+			// 
+			this.labelPotValue.Location = new System.Drawing.Point(351, 286);
+			this.labelPotValue.Name = "labelPotValue";
+			this.labelPotValue.Size = new System.Drawing.Size(83, 23);
+			this.labelPotValue.TabIndex = 22;
+			this.labelPotValue.Text = "0";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(950, 368);
+			this.Controls.Add(this.labelPotValue);
+			this.Controls.Add(this.trackBarPotValue);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.numericUpDownYMin);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.numericUpDownYMax);
 			this.Controls.Add(this.numDecimateFactor);
-			this.Controls.Add(this.lblCount);
 			this.Controls.Add(this.chkSingle);
 			this.Controls.Add(this.tbLength);
 			this.Controls.Add(this.btnSetLength);
@@ -414,20 +428,21 @@ namespace DataLogger
 			this.Controls.Add(this.cbPorts);
 			this.Controls.Add(this.btnFindCom);
 			this.Name = "MainForm";
-			this.Text = "DataLogger";
+			this.Text = "Serial Monitor";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainFormFormClosed);
 			((System.ComponentModel.ISupportInitialize)(this.numDecimateFactor)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYMax)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownYMin)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.trackBarPotValue)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
+			this.PerformLayout();		
 		}
+		
 		private System.Windows.Forms.NumericUpDown numericUpDownYMin;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown numericUpDownYMax;
 		private System.Windows.Forms.NumericUpDown numDecimateFactor;
-		private System.Windows.Forms.Label lblCount;
 		private System.Windows.Forms.Button btnAnalyze;
 		private System.Windows.Forms.Button btnExportGraph;
 		private System.Windows.Forms.Button btnImportData;
@@ -450,5 +465,7 @@ namespace DataLogger
 		private System.Windows.Forms.ComboBox cbPorts;
 		private System.IO.Ports.SerialPort serialPort1;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.TrackBar trackBarPotValue;
+		private System.Windows.Forms.Label labelPotValue;
 	}
 }
